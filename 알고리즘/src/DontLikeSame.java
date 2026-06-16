@@ -1,5 +1,7 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 public class DontLikeSame {
@@ -24,6 +26,22 @@ public class DontLikeSame {
             }
         }
         return Arrays.copyOf(temp, count);
+    }
+
+    public int[] solution2(int[] arr) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int num : arr) {
+            if (stack.isEmpty() || stack.peek() != num) {
+                stack.push(num);
+            }
+        }
+
+        int[] result = new int[stack.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = stack.pop();
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
